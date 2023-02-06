@@ -11,9 +11,9 @@ class ProductService {
     return this.model.create(product);
   }
 
-  // public getAll(): Promise<Product> {
-  //   return this.model.getAll();
-  // }
+  public getAll() {
+    return this.model.getAll();
+  }
 }
 
 export default ProductService;
