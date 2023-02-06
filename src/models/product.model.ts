@@ -6,7 +6,7 @@ export default class ProductModel {
 
   constructor(connection: Pool) {
     this.connection = connection;
-  };
+  }
 
   public async create(product: Product): Promise<Product> {
     const { name, amount } = product;
@@ -17,6 +17,5 @@ export default class ProductModel {
     const [dataInserted] = result;
     const { insertId } = dataInserted;
     return { id: insertId, ...product };
-  };
-
+  }
 }
