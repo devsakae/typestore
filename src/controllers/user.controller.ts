@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import UserService from '../services/user.service';
+import getError from '../validations/errors';
 
 const secret = process.env.JWT_SECRET || 'ninguemsabedomeutoken';
 
@@ -8,15 +9,15 @@ class UserController {
   constructor(private userService = new UserService()) { }
 
   public create = async (req: Request, res: Response) => {
-    const response = await this.userService.create(req.body);
-    const signed = jwt.sign({ data: { userId: response.id } }, secret, { algorithm: 'HS256' });
-    res.status(201).json({ token: signed });
+    try {
+      const response = await this.userService.create(req.body);
+      const signed = jwt.sign({ data: { userId: response.id } }, secret, { algorithm: 'HS256' });
+      res.status(201).json({ token: signed });
+    } catch (err: any) {
+      const errorCode = getError(err);
+      res.status(errorCode).json({ message: err.message });
+    }
   };
-
-  // public login = async (req: Request, res: Response) => {
-  //   const response = await this.userService.login(req.body);
-  //   res.status(666).json(response);
-  // };
 
   public login = async (req: Request, res: Response) => {
     const sent = req.body;
