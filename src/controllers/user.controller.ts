@@ -7,11 +7,11 @@ const secret = process.env.JWT_SECRET || 'ninguemsabedomeutoken';
 class UserController {
   constructor(private userService = new UserService()) { }
 
-  public async create(req: Request, res: Response) {
+  public create = async (req: Request, res: Response) => {
     const response = await this.userService.create(req.body);
     const signed = jwt.sign({ data: { userId: response.id } }, secret, { algorithm: 'HS256' });
     res.status(201).json({ token: signed });
-  }
+  };
 
   // public login = async (req: Request, res: Response) => {
   //   const response = await this.userService.login(req.body);
