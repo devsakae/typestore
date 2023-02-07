@@ -13,9 +13,8 @@ const orderController = new OrderController();
 
 app.post('/products', productController.create);
 app.get('/products', productController.getAll);
-
 app.post('/users', userController.create);
-
 app.get('/orders', orderController.getOrders);
+app.post('/login', userController.login);
 
 export default app;

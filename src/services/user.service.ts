@@ -7,9 +7,14 @@ class UserService {
 
   constructor() { this.model = new UserModel(connection); }
 
-  public create(user: User): Promise<User> {
-    const userId = this.model.create(user);
+  public async create(user: User): Promise<User> {
+    const userId = await this.model.create(user);
     return userId;
+  }
+
+  public async login(user: User) {
+    const [response] = await this.model.login(user);
+    return response;
   }
 }
 
