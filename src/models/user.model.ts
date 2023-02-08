@@ -19,17 +19,17 @@ export default class UserModel {
     return { id: insertId, ...user };
   }
 
-  public async login(user: User): Promise<any> {
+  public async login(user: User) {
     const { username, password } = user;
-    const [response] = await this.connection.execute<ResultSetHeader>(
+    const [response] = await this.connection.execute(
       'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?',
       [username, password],
     );
-    return response;
+    return response as User[];
   }
 
-  public async getById(userId: number): Promise<any> {
-    const [response] = await this.connection.execute<ResultSetHeader>(
+  public async getById(userId: number) {
+    const [response] = await this.connection.execute(
       'SELECT * FROM Trybesmith.users WHERE id = ?',
       [userId],
     );

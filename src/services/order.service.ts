@@ -11,7 +11,7 @@ export default class OrderService {
     return this.model.getOrders();
   }
 
-  public async newOrder(userId: any, productsIds: number[]): Promise<Order> {
+  public async newOrder(userId: number, productsIds: number[]): Promise<Order> {
     await this.model.newOrder(userId, productsIds);
     return { userId, productsIds };
   }

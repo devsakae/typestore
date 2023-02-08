@@ -1,5 +1,5 @@
-export default interface Error {
-  message: string,
-  path?: [],
-  type: string,
+export default interface Errado {
+  details: {
+    type: string,
+  }[],
 }
