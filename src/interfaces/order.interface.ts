@@ -1,5 +1,8 @@
 export default interface Order {
-  id?: number;
-  userId: number;
-  productsIds: [number];
+  id?: number,
+  error?: {
+    message: string
+  }
+  userId: number,
+  productsIds: number[],
 }

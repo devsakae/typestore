@@ -27,4 +27,12 @@ export default class UserModel {
     );
     return response;
   }
+
+  public async getById(userId: number): Promise<any> {
+    const [response] = await this.connection.execute<ResultSetHeader>(
+      'SELECT * FROM Trybesmith.users WHERE id = ?',
+      [userId],
+    );
+    return response;
+  }
 }

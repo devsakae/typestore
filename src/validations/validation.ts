@@ -12,4 +12,8 @@ const userCreateSchema = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
-export { productCreateSchema, userCreateSchema };
+const orderCreateSchema = Joi.object({
+  productsIds: Joi.array().items(Joi.number().required()).required(),
+});
+
+export { productCreateSchema, userCreateSchema, orderCreateSchema };

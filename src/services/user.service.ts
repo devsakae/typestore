@@ -18,6 +18,15 @@ class UserService {
     const [response] = await this.model.login(user);
     return response;
   }
+
+  // public async getById(userId: number) {
+  //   try {
+  //     const response = await this.model.getById(userId);
+  //     return response;
+  //   } catch (err) {
+  //     return err;
+  //   }
+  // }
 }
 
 export default UserService;

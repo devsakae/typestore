@@ -8,9 +8,10 @@ class ProductService {
 
   constructor() { this.model = new ProductModel(connection); }
 
-  public async create(product: Product): Promise<Product> {
+  public async create(product: Product): Promise<Product | unknown> {
     await productCreateSchema.validateAsync(product);
-    return this.model.create(product);
+    const response = await this.model.create(product);
+    return response;
   }
 
   public async getAll() {

@@ -14,8 +14,8 @@ class UserController {
       const signed = jwt.sign({ data: { userId: response.id } }, secret, { algorithm: 'HS256' });
       res.status(201).json({ token: signed });
     } catch (err: any) {
-      const errorCode = getError(err);
-      res.status(errorCode).json({ message: err.message });
+      const error = getError(err);
+      res.status(error.code).json({ message: error.message });
     }
   };
 

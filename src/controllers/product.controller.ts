@@ -11,8 +11,8 @@ class ProductController {
       const productCreated = await this.productService.create(product);
       res.status(201).json(productCreated);
     } catch (err: any) {
-      const errorCode = getError(err);
-      res.status(errorCode).json({ message: err.message });
+      const error = getError(err);
+      res.status(error.code).json({ message: error.message });
     }
   };
 
