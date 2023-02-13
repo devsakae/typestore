@@ -12,11 +12,11 @@ const productController = new ProductController();
 const userController = new UserController();
 const orderController = new OrderController();
 
-app.post('/products', productController.create);
-app.get('/products', productController.getAll);
-app.post('/users', userController.create);
-app.get('/orders', orderController.getOrders);
-app.post('/orders', validateToken, orderController.newOrder);
+app.post('/produtos', productController.create);
+app.get('/produtos', productController.getAll);
+app.post('/staff', userController.create);
+app.get('/pedidos', orderController.getOrders);
+app.post('/pedidos', validateToken, orderController.newOrder);
 app.post('/login', userController.login);
 
 export default app;

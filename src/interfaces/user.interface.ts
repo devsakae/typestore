@@ -1,7 +1,7 @@
 export default interface User {
   id?: number;
   username: string;
-  vocation?: string;
-  level?: number;
+  displayName?: string;
+  email: string;
   password: string;
 }

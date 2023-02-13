@@ -9,10 +9,10 @@ export default class UserModel {
   }
 
   public async create(user: User): Promise<User> {
-    const { username, vocation, level, password } = user;
+    const { username, displayName, email, password } = user;
     const response = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
-      [username, vocation, level, password],
+      'INSERT INTO typestore.users (username, displayName, email, password) VALUES (?, ?, ?, ?)',
+      [username, displayName, email, password],
     );
     const [dataInserted] = response;
     const { insertId } = dataInserted;
@@ -22,7 +22,7 @@ export default class UserModel {
   public async login(user: User) {
     const { username, password } = user;
     const [response] = await this.connection.execute(
-      'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?',
+      'SELECT * FROM typestore.users WHERE username = ? AND password = ?',
       [username, password],
     );
     return response as User[];
@@ -30,7 +30,7 @@ export default class UserModel {
 
   public async getById(userId: number) {
     const [response] = await this.connection.execute(
-      'SELECT * FROM Trybesmith.users WHERE id = ?',
+      'SELECT * FROM typestore.users WHERE id = ?',
       [userId],
     );
     return response;

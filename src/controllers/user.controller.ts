@@ -29,7 +29,7 @@ class UserController {
     const response = await this.userService.login(sent);
     if (!response) return res.status(401).json({ message: 'Username or password invalid' });
     const token = jwt.sign({ data: { userId: response.id } }, secret, {
-      expiresIn: '12h',
+      expiresIn: '7d',
       algorithm: 'HS256',
     });
     res.status(200).json({ token });

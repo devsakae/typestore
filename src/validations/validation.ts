@@ -2,14 +2,14 @@ import Joi from 'joi';
 
 const productCreateSchema = Joi.object({
   name: Joi.string().min(3).required(),
-  amount: Joi.string().min(3).required(),
+  price: Joi.number().min(0).required(),
 });
 
 const userCreateSchema = Joi.object({
-  username: Joi.string().min(3).required(),
-  vocation: Joi.string().min(3).required(),
-  level: Joi.number().min(1).required(),
+  username: Joi.string().trim().min(3).required(),
+  displayName: Joi.string().min(3),
   password: Joi.string().min(8).required(),
+  email: Joi.string().required(),
 });
 
 const orderCreateSchema = Joi.object({

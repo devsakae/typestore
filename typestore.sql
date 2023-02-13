@@ -4,9 +4,9 @@ CREATE SCHEMA IF NOT EXISTS typestore;
 CREATE TABLE typestore.users (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   username TEXT NOT NULL,
+  email TEXT NOT NULL,
   displayName TEXT NOT NULL,
   password TEXT NOT NULL
-  phone INTEGER NOT NULL,
 );
 
 CREATE TABLE typestore.orders (
@@ -18,36 +18,36 @@ CREATE TABLE typestore.orders (
 CREATE TABLE typestore.products (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   name TEXT NOT NULL,
-  amount TEXT NOT NULL,
+  amount DOUBLE NOT NULL,
   order_id INTEGER,
   FOREIGN KEY (order_id) REFERENCES typestore.orders (id)
 );
 
 INSERT INTO
-  typestore.users (username, displayName, phone, password)
+  typestore.users (username, displayName, email, password)
 VALUES
-  ("cliente.rodrigo", "Rodrigo Sakae", 99999999, "senhadocliente"),
-  ("cliente.leticia", "Letícia H S", 99999999, "minhaprimeirasenha"); 
+  ("gerente", "Gerente da loja", "gerente@loja.com.br", "122333"),
+  ("supervisor", "Supervisor da loja", "supervisor@loja.com.br", "123456"); 
 INSERT INTO
   typestore.orders (user_id)
 VALUES
   (1),
-  (3),
+  (1),
   (2);
 
 INSERT INTO
   typestore.products (name, amount)
 VALUES
-  ("Cuia chimarrão porcelana verde", "R$ 50,00");
+  ("Toalha de mesa bordada tema flores", 79.9);
 
 INSERT INTO
-  Trybesmith.products (name, amount, order_id)
+  typestore.products (name, amount, order_id)
 VALUES
   (
-    "Guarda chuva de veludo vermelho",
-    "1 ingresso jogo do Criciúma",
+    "Gorro de lã tema natal",
+    24.9,
     1
   ),
-  ("Garrafa customizada para suco", "Post patrocinado Instagram", 2),
-  ("Capinha de celular de massinha", "Um beijo", 2),
-  ("Pintura corporal", "Um favor", 3);
+  ("Pano de louça tema universo", 5.9, 2),
+  ("Pano de louça tema frutas", 5.9, 2),
+  ("Kit de 3 panos de louças sortidos", 16, 3);
